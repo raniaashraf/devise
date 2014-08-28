@@ -153,7 +153,10 @@ module Devise
       if method == "to_xml"
         { error: i18n_message }.to_xml(root: "errors")
       elsif {}.respond_to?(method)
-        { error: i18n_message }.send(method)
+        { success: false,
+          info: i18n_message,
+          data: { }
+        }.send(method)
       else
         i18n_message
       end
